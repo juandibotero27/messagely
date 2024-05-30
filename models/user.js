@@ -34,11 +34,11 @@ class User {
 
   static async updateLoginTimestamp(username) {
     const results = await db.query(`UPDATE users SET last_login_at=current_timestamp WHERE username=$1 RETURNING username`, [username])
+    
     if(!results.rows[0]){
       throw new ExpressError("user does not exist", 404)
     }
-    
-
+  
    }
 
   /** All: basic info on all users:
